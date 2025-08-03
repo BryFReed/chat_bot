@@ -4,8 +4,10 @@ import os
 from flask_cors import CORS
 
 # Set your OpenAI key here or via environment variable
-openai.api_key ="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"
-print("Using OpenAI key:", openai.api_key)
+openai.api_key = os.getenv("OPENAI_API_KEY")
+if not openai.api_key:
+    raise RuntimeError("OPENAI_API_KEY not set in environment variables.")
+
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 CORS(app)  # Enable CORS for all routes
