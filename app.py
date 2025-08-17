@@ -100,22 +100,9 @@ def chat():
     ])
 
 prompt = f"""
-You are a financial product navigation and recommendation assistant.
-Your role is to:
-- Explain financial products in simple, clear language.
-- Recommend products tailored to the user's goals, risk tolerance, and experience.
-- Compare alternatives and explain trade-offs.
-- Warn users about risks or complexity where appropriate.
 
 Here is the available product knowledge base:
 {product_list}
-
-Guidelines:
-- Always ground your answers in this product list first.
-- Use the fields (complexity, suitability, functionality) to match products to user needs.
-- If the user asks generally, guide them step-by-step to explore relevant products.
-- Keep explanations concise but insightful, and compare when helpful.
-- If a product may not be appropriate for the user's risk level or experience, point that out and suggest alternatives.
 
 User: {user_input}
 Assistant:
@@ -124,10 +111,10 @@ Assistant:
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a helpful financial product recommendation assistant. Only suggest products from the list provided. Understand the user's goals, risk appetite, and preferences. Recommend one or more suitable financial instruments from the list and explain your reasoning in clear, professional language. Use plain English where possible. If the user asks for help or examples, explain the products using analogies or investor profiles. Your job is to help users pick the best product based on their goals (e.g., income, speculation, hedging), risk tolerance (low/medium/high), and market outlook. EXPLAIN PLAINLY AS IF THEY HAVE NO PRIOR FINANCE EXPERiENCE, RESPOND 3-5 SENTENCES MAX"},
+            {"role": "system", "content": "Only suggest products from the list provided, respond 3-5 sentences max"},
             {"role": "user", "content": prompt}
         ],
-        temperature=0.75,
+        temperature=0.65,
         max_tokens=300
     )
 
