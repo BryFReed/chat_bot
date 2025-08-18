@@ -109,7 +109,7 @@ def chat():
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "Only suggest products from the list provided, respond 3-5 sentences max"},
+            {"role": "system", "content": "Only suggest products from the list provided, respond 2 sentences max"},
             {"role": "user", "content": prompt}
         ],
         temperature=0.65,
