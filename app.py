@@ -109,10 +109,10 @@ def chat():
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "Only suggest products from the list provided, respond 2 sentences max"},
+            {"role": "system", "content": "Only suggest products from the list provided, respond 2 sentences max. Also you need to be very concise. Dont offer mulitple products. Be right to the point, dont run on about anything. remove unnessesary phrases and words. you should be very professional"},
             {"role": "user", "content": prompt}
         ],
-        temperature=0.65,
+        temperature=0.2,
         max_tokens=300
     )
 
