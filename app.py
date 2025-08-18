@@ -99,15 +99,14 @@ def chat():
     for p in PRODUCTS
     ])
 
-prompt = f"""
-
-Here is the available product knowledge base:
-{product_list}
-
-User: {user_input}
-Assistant:
-"""
-response = openai.ChatCompletion.create(
+    prompt = f"""
+    Here is the available product knowledge base:
+    {product_list}
+    
+    User: {user_input}
+    Assistant:
+    """
+    response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "Only suggest products from the list provided, respond 3-5 sentences max"},
@@ -117,8 +116,8 @@ response = openai.ChatCompletion.create(
         max_tokens=300
     )
 
-reply = response.choices[0].message.content.strip()
-return jsonify({"reply": reply})
+    reply = response.choices[0].message.content.strip()
+    return jsonify({"reply": reply})
 
 
 if __name__ == "__main__":
